@@ -5,10 +5,9 @@
 #################################################################
 # SUPER + FUNCTION KEYS
 #################################################################
-
-# Vivaldi
+# Firefox
 super + F1
-	vivaldi-stable
+  firefox
 
 # Atom
 super + F2
@@ -58,17 +57,20 @@ super + F12
 # SUPER + ... KEYS
 #################################################################
 
-#Atom
+#Thunar
 super + e
-    atom
+    thunar
 
 #Browser
 super + w
-    vivaldi-stable
+    firefox
+
+super + shift + w
+  firefox --private-window
 
 #Conky-toggle
-super + c
-    conky-toggle
+# super + c
+    # conky-toggle
 
 #Htop
 #super + h
@@ -79,8 +81,8 @@ super + x
     arcolinux-logout
 
 #Rofi theme selector
-super + r
-    rofi-theme-selector
+# super + r
+    # rofi-theme-selector
 
 #Urxvt
 #super + t
@@ -121,7 +123,7 @@ super + shift + KP_Enter
 	thunar
 
 #dmenu
-super + shift + d
+super + d
 	dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'
 
 #reload sxhkd:
@@ -160,10 +162,6 @@ ctrl + alt + c
 #Chromium
 ctrl + alt + g
     chromium -no-default-browser-check
-
-#Firefox
-ctrl + alt + f
-     firefox
 
 #Nitrogen
 ctrl + alt + i
@@ -204,10 +202,6 @@ ctrl + alt + Return
 #urxvt
 ctrl + alt + t
     urxvt
-
-#Vivaldi
-ctrl + alt + v
-    vivaldi-stable
 
 #Xfce4-appfinder
 ctrl + alt + a
@@ -312,7 +306,7 @@ ctrl + Print
 
 #Gnome-Screenshot
 ctrl + shift + Print
-     gnome-screenshot -i
+     gnome-screenshot -a
 
 
 #################################################################

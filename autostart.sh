@@ -16,10 +16,11 @@ function run {
 #run xrandr --output DVI-D-1 --right-of DVI-I-1 --auto
 #run xrandr --output HDMI2 --right-of HDMI1 --auto
 #autorandr horizontal
+run xrandr --output eDP1 --right-of DP1 --auto
 
 run "nm-applet"
 run "pamac-tray"
-run "variety"
+# run "variety"
 run "xfce4-power-manager"
 run "blueberry-tray"
 run "/usr/lib/xfce4/notifyd/xfce4-notifyd"
@@ -32,12 +33,13 @@ sxhkd -c ~/.config/arco-dwm/sxhkd/sxhkdrc &
 #run "nitrogen --restore"
 #rn "conky -c $HOME/.config/arco-dwm/system-overview"
 #you can set wallpapers in themes as well
-feh --bg-fill /usr/share/backgrounds/arcolinux/arco-wallpaper.jpg &
+# feh --bg-fill /usr/share/backgrounds/arcolinux/arco-wallpaper.jpg &
+feh --bg-fill /home/swepz/.config/arco-dwm/wallpaper/abstract001.jpg &  
 
 #run applications from startup
 
 #run "insync start"
-#run "spotify"
+# run "spotify"
 #run "ckb-next -b"
 #run "discord"
-#run "telegram-desktop"
+run "telegram-desktop"
