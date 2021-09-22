@@ -151,10 +151,6 @@ ctrl + alt + Next
 ctrl + alt + Prior
     conky-rotate -p
 
-#File-Manager
-ctrl + alt + b
-     thunar
-
 #Catfish
 ctrl + alt + c
      catfish
