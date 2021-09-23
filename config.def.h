@@ -52,6 +52,7 @@ static const Rule rules[] = {
   { "TelegramDesktop", "telegram-desktop",   NULL,       1 << 7,         0,                 -1 },
 	{ "firefox",                   NULL,       NULL,       0,            0,           -1 },
 	{ "Arcolinux-welcome-app.py",  NULL,       NULL,       0,            1,           -1 },
+  { NULL,                       NULL, "Picture-in-Picture", 0,         1,            -1 },
 	{ "Arcolinux-calamares-tool.py",  NULL,       NULL,       0,            1,           -1 },	
 };
 
