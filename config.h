@@ -113,7 +113,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
 	/*{ MODKEY,                       XK_Return, zoom,           {0} },*/
-	/*{ MODKEY,                       XK_Tab,    view,           {0} },*/
+  { MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,				XK_q,      killclient,     {0} },
 	{ MODKEY,						XK_q,      killclient,     {0} },
 	{ MODKEY,						XK_BackSpace,      killclient,     {0} },
@@ -140,7 +140,7 @@ static Key keys[] = {
 	{ Mod1Mask|ControlMask,         XK_Down,   shiftview,      {.i = -1 } },	
 	{ Mod1Mask,						XK_Tab,    shiftview,      {.i =  1 } },
 	{ Mod1Mask|ShiftMask,	        XK_Tab,	   shiftview,	   {.i = -1 } },
-	{ MODKEY,		        		XK_Tab,    shiftview,	   {.i =  1 } },
+	// { MODKEY,		        		XK_Tab,    shiftview,	   {.i =  1 } },
 	{ MODKEY|ShiftMask,		        XK_Tab,	   shiftview,	   {.i = -1 } },
 
 

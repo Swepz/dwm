@@ -80,9 +80,9 @@ super + shift + w
 super + x
     arcolinux-logout
 
-#Rofi theme selector
-# super + r
-    # rofi-theme-selector
+# Ranger
+super + r
+    alacritty -e ranger
 
 #Urxvt
 #super + t
@@ -96,7 +96,7 @@ super + v
 #super + m
 #    pragha
 
-#urxvt
+# Alacritty terminal
 super + Return
     alacritty
 
