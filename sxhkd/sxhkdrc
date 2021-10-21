@@ -50,7 +50,7 @@ super + F11
     rofi -show drun -fullscreen
 
 #Rofi
-super + F12
+super + p
     rofi -show drun
 
 #################################################################
@@ -138,38 +138,6 @@ super + shift + s
 #arcolinux-welcome-app
 ctrl + alt + w
      arcolinux-welcome-app
-
-#arcolinux-tweak-tool
-ctrl + alt + e
-    arcolinux-tweak-tool
-
-#conky-rotate
-ctrl + alt + Next
-     conky-rotate -n
-
-#conky-rotate
-ctrl + alt + Prior
-    conky-rotate -p
-
-#Catfish
-ctrl + alt + c
-     catfish
-
-#Chromium
-ctrl + alt + g
-    chromium -no-default-browser-check
-
-#Nitrogen
-ctrl + alt + i
-     nitrogen
-
-#arcolinux-logout
-ctrl + alt + k
-     arcolinux-logout
-
-#arcolinux-logout
-ctrl + alt + l
-    arcolinux-logout
 
 #Pamac-manager
 ctrl + alt + p
@@ -356,13 +324,21 @@ XF86AudioStop
     playerctl stop
 
 #Brightness up
-XF86MonBrightnessUp
-    xbacklight -inc 10
+# 10XF86MonBrightnessUp
+    # xbacklight -inc 10
+#
+# Brightness down
+# XF86MonBrightnessDown
+    # xbacklight -dec 10
 
+
+#Brightness up
+XF86MonBrightnessUp
+  light -A 10 
+#
 #Brightness down
 XF86MonBrightnessDown
-    xbacklight -dec 10
-
+  light -U 10
 
 #################################################################
 #################################################################

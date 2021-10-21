@@ -16,7 +16,8 @@ function run {
 #run xrandr --output DVI-D-1 --right-of DVI-I-1 --auto
 #run xrandr --output HDMI2 --right-of HDMI1 --auto
 #autorandr horizontal
-run xrandr --output eDP-1 --right-of DP-1 --auto
+# run xrandr --output eDP-1 --right-of DP-1 --auto
+run autorandr --detect -c
 
 run "nm-applet"
 run "pamac-tray"
