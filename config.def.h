@@ -2,13 +2,13 @@
 
 /* appearance */
 static const unsigned int borderpx  = 5;        /* border pixel of windows */
-static const unsigned int gappx     = 10;        /* gaps between windows */
+static const unsigned int gappx     = 0;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
-static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
+static const unsigned int systraypinning = 1;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray        = 1;     /* 0 means no systray */
-static const int showbar            = 1;        /* 0 means no bar */
+static const int showbar            = 0;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
 static const Bool viewontag         = True;     /* Switch view on tag switch */
 static const char *fonts[]          = { "Noto Sans Mono:size=14" };
@@ -55,7 +55,9 @@ static const Rule rules[] = {
 	{ "firefox",                   NULL,       NULL,       0,            0,           -1 },
 	{ "Arcolinux-welcome-app.py",  NULL,       NULL,       0,            1,           -1 },
   { NULL,                       NULL, "Picture-in-Picture", 0,         1,            -1 },
-	{ "Arcolinux-calamares-tool.py",  NULL,       NULL,       0,            1,           -1 },	
+	{ "Arcolinux-calamares-tool.py",  NULL,       NULL,       0,         1,           -1 },	
+	{ "Code",                      NULL,       NULL,       1 << 2,       0,           -1 },	
+	{ "qalculate-gtk",                      NULL,       NULL,       0,       1,           -1 },	
 };
 
 /* layout(s) */
@@ -116,9 +118,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_Right,      movestack,      {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_Left,      movestack,      {.i = -1 } },
+	{ MODKEY,                       XK_plus,  setgaps,        {.i = +1 } },
 	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
-	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
+	{ MODKEY,             XK_equal,  setgaps,        {.i = 0  } },
 	/*{ MODKEY,                       XK_Return, zoom,           {0} },*/
   { MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,				XK_q,      killclient,     {0} },
