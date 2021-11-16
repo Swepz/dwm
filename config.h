@@ -1,15 +1,15 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 5;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int gappx     = 0;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systraypinning = 1;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray        = 1;     /* 0 means no systray */
-static const int showbar            = 0;        /* 0 means no bar */
-static const int topbar             = 0;        /* 0 means bottom bar */
+static const int showbar            = 1;        /* 0 means no bar */
+static const int topbar             = 1;        /* 0 means bottom bar */
 static const Bool viewontag         = True;     /* Switch view on tag switch */
 static const char *fonts[]          = { "Noto Sans Mono:size=14" };
 static const char dmenufont[]       = "monospace:size=12";
@@ -51,9 +51,11 @@ static const Rule rules[] = {
 	{ "Gimp",                      NULL,       NULL,       0,            0,           -1 },
 	{ "Xfce4-terminal",            NULL,       NULL,       0,            1,           -1 },
   { "Spotify",     "spotify",       NULL,       1 << 8,         0,                 -1 },
-  { "TelegramDesktop", "telegram-desktop",   NULL,       1 << 7,         0,                 -1 },
+  { "TelegramDesktop", "telegram-desktop",   NULL,       1 << 7,       0,                 -1 },
 	{ "firefox",                   NULL,       NULL,       0,            0,           -1 },
 	{ "Arcolinux-welcome-app.py",  NULL,       NULL,       0,            1,           -1 },
+	{ "vlc",                       NULL,       NULL,       0,            1,           -1 },
+	{ "mpv",                       NULL,       NULL,       0,            1,           -1 },
   { NULL,                       NULL, "Picture-in-Picture", 0,         1,            -1 },
 	{ "Arcolinux-calamares-tool.py",  NULL,       NULL,       0,         1,           -1 },	
 	{ "Code",                      NULL,       NULL,       1 << 2,       0,           -1 },	
@@ -125,6 +127,11 @@ static Key keys[] = {
   { MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,				XK_q,      killclient,     {0} },
 	{ MODKEY,						XK_q,      killclient,     {0} },
+	{ MODKEY,                       XK_F1,     locktagsfor,    {.ui = 300 } },
+	{ MODKEY,                       XK_F2,     locktagsfor,    {.ui = 600 } },
+	{ MODKEY,                       XK_F3,     locktagsfor,    {.ui = 900 } },
+	{ MODKEY,                       XK_F4,     locktagsfor,    {.ui = 1200 } },
+	{ MODKEY|ShiftMask,             XK_F5,     locktagsfor,    {.ui = 0 } },
 	{ MODKEY,						XK_BackSpace,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_g,      setlayout,      {.v = &layouts[1]} },

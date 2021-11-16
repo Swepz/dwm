@@ -27,6 +27,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -214,6 +215,7 @@ static void grabkeys(void);
 static void incnmaster(const Arg *arg);
 static void keypress(XEvent *e);
 static void killclient(const Arg *arg);
+static void locktagsfor(const Arg *arg);
 static void manage(Window w, XWindowAttributes *wa);
 static void mappingnotify(XEvent *e);
 static void maprequest(XEvent *e);
@@ -323,6 +325,8 @@ static Clr **scheme;
 static Display *dpy;
 static Drw *drw;
 static Monitor *mons, *selmon;
+static time_t locktagsuntil = 0;
+static int tagslocked(){ return difftime(locktagsuntil, time(NULL)) > 0; }
 static Window root, wmcheckwin;
 
 static int useargb = 0;
@@ -882,6 +886,7 @@ void
 drawbar(Monitor *m)
 {
 	int x, w, sw = 0, stw = 0;
+	const int locked = tagslocked();
 	int boxs = drw->fonts->h / 9;
 	int boxw = drw->fonts->h / 6 + 2;
 	unsigned int i, occ = 0, urg = 0;
@@ -907,7 +912,9 @@ drawbar(Monitor *m)
 	for (i = 0; i < LENGTH(tags); i++) {
 		w = TEXTW(tags[i]);
 		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeSel : SchemeNorm]);
-		drw_text(drw, x, 0, w, bh, lrpad / 2, tags[i], urg & 1 << i);
+//		drw_text(drw, x, 0, w, bh, lrpad / 2, tags[i], urg & 1 << i);
+		drw_text(drw, x, 0, w, bh, lrpad / 2, 
+		           !locked || m->tagset[m->seltags] & 1 << i ? tags[i] : "", !locked && (urg & 1 << i));
 		if (occ & 1 << i)
 			drw_rect(drw, x + boxs, boxs, boxw, boxw,
 				m == selmon && selmon->sel && selmon->sel->tags & 1 << i,
@@ -1243,6 +1250,19 @@ killclient(const Arg *arg)
 		XSetErrorHandler(xerror);
 		XUngrabServer(dpy);
 	}
+}
+
+void
+locktagsfor(const Arg *arg)
+{
+#if 0 // enable for a shortcut to break out early
+   if(tagslocked()){
+		locktagsuntil = time(NULL);
+		return;
+	}
+#endif
+	// all sane implementations implement time_t as integral second count, so we just add seconds here
+	locktagsuntil = time(NULL) + (time_t) arg->ui;
 }
 
 void
@@ -2055,6 +2075,9 @@ spawn(const Arg *arg)
 void
 tag(const Arg *arg)
 {
+	if(tagslocked())
+		return;
+
 	if (selmon->sel && arg->ui & TAGMASK) {
 		selmon->sel->tags = arg->ui & TAGMASK;
 		focus(NULL);
@@ -2161,6 +2184,9 @@ toggletag(const Arg *arg)
 {
 	unsigned int newtags;
 
+	if(tagslocked())
+		return;
+
 	if (!selmon->sel)
 		return;
 	newtags = selmon->sel->tags ^ (arg->ui & TAGMASK);
@@ -2176,6 +2202,9 @@ toggleview(const Arg *arg)
 {
 	unsigned int newtagset = selmon->tagset[selmon->seltags] ^ (arg->ui & TAGMASK);
 	int i;
+
+	if(tagslocked())
+		return;
 
 	if (newtagset) {
 		selmon->tagset[selmon->seltags] = newtagset;
@@ -2635,6 +2664,10 @@ view(const Arg *arg)
 
 	if ((arg->ui & TAGMASK) == selmon->tagset[selmon->seltags])
 		return;
+
+	if(tagslocked())
+		return;
+
 	selmon->seltags ^= 1; /* toggle sel tagset */
 	if (arg->ui & TAGMASK) {
 		selmon->tagset[selmon->seltags] = arg->ui & TAGMASK;
